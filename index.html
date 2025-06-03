@@ -6,11 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akshat Gupta | Portfolio</title>
   <link rel="stylesheet" href="Homepage.css">
+  <link rel="javascript" href="Homepage.js">
 </head>
 
 <body style="background-color: #191919;">
 
-  <!-- Logo -->
+<style>
+    body, * {
+        cursor: url('Images/Cursor.png'), auto !important;
+    }
+</style>
+
 <div style="position: fixed; top: 10px; left: 10px; z-index: 1000; display: flex; align-items: center; gap: 20px;">
     <img src="Images/Akshat Creations.png" alt="Logo" class="site-logo">
     <style>
@@ -213,7 +219,7 @@
     }
 }
 </style>
-<img src="Images/Software logos.png" alt="Skills Image" class="skills-img" style="width: calc(70% - 500px); height: auto; max-width: 100%; max-height: calc(100% - 110px); margin: 1px; display: block; margin-left: auto; margin-right: auto;">
+<img src="Images/skills image.png" alt="Skills Image" class="skills-img" style="width: calc(70% - 500px); height: auto; max-width: 100%; max-height: calc(100% - 110px); margin: 1px; display: block; margin-left: auto; margin-right: auto;">
 <style>
 @media (max-width: 600px) {
     .skills-img {
@@ -288,6 +294,105 @@
     <p style="color: white; font-size: 18px;">Projects will be updated soon... </p>
 </section>
 
+<!-- Glass Card Effect Image with Sparkle on Hover -->
+<div class="sparkle-card-container" style="display: flex; justify-content: center; align-items: center; margin: 40px 0; position: relative;">
+    <img 
+        src="Images/glass card effect.png" 
+        alt="Glass Card Effect" 
+        class="sparkle-img"
+        style="max-width: 600px; width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); backdrop-filter: blur(8px); position: relative; z-index: 1;"
+    >
+    <div class="sparkle-overlay"></div>
+</div>
+<style>
+.sparkle-card-container {
+    position: relative;
+}
+.sparkle-overlay {
+    pointer-events: none;
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.sparkle-img:hover + .sparkle-overlay,
+.sparkle-img:focus + .sparkle-overlay {
+    opacity: 1;
+}
+.sparkle-star {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, #fff8 60%, transparent 100%);
+    opacity: 0.85;
+    animation: sparkle-star-anim 1.2s linear forwards;
+}
+@keyframes sparkle-star-anim {
+    0% { opacity: 0; transform: scale(0.5) rotate(0deg);}
+    10% { opacity: 1; transform: scale(1.2) rotate(10deg);}
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: scale(0.5) rotate(0deg);}
+}
+</style>
+<script>
+(function() {
+    const container = document.querySelector('.sparkle-card-container');
+    const overlay = container.querySelector('.sparkle-overlay');
+    const img = container.querySelector('.sparkle-img');
+    let sparkleTimeout;
+
+    function randomBetween(a, b) {
+        return Math.random() * (b - a) + a;
+    }
+
+    function createSparkle() {
+        const star = document.createElement('div');
+        star.className = 'sparkle-star';
+        // Random size and position
+        const size = randomBetween(8, 22);
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${randomBetween(2, 98)}%`;
+        star.style.top = `${randomBetween(2, 98)}%`;
+        star.style.filter = `blur(${randomBetween(0, 1.5)}px)`;
+        star.style.boxShadow = `0 0 ${randomBetween(6, 18)}px 2px #fff8`;
+        overlay.appendChild(star);
+        setTimeout(() => {
+            star.remove();
+        }, 1200);
+    }
+
+    function startSparkles() {
+        overlay.style.opacity = 1;
+        let count = 0;
+        function sparkleBurst() {
+            // 8-14 sparkles per burst
+            for (let i = 0; i < randomBetween(8, 14); i++) {
+                setTimeout(createSparkle, i * 60);
+            }
+            count++;
+            if (count < 2) { // 2 bursts for richer effect
+                setTimeout(sparkleBurst, 350);
+            }
+        }
+        sparkleBurst();
+    }
+
+    function stopSparkles() {
+        overlay.style.opacity = 0;
+        overlay.innerHTML = '';
+        clearTimeout(sparkleTimeout);
+    }
+
+    img.addEventListener('mouseenter', startSparkles);
+    img.addEventListener('focus', startSparkles);
+    img.addEventListener('mouseleave', stopSparkles);
+    img.addEventListener('blur', stopSparkles);
+})();
+</script>
+
 <!-- Contact Section -->
 <section id="contact" style="padding: 10px; margin-left: 110px; margin-right: 110px;">
     <h2 class="contact-title" style="color: cyan; font-size: 36px;">Contact</h2>
@@ -317,4 +422,5 @@
         <a href="https://www.facebook.com/share/18pPMP2Efo/" target="_blank"><img src="Images/facebook.png" alt="Facebook Logo" style="height: 30px;"></a>
     </div>
 </section>
+
 </html>
