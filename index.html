@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akshat Gupta | Portfolio</title>
+  <link rel="stylesheet" href="Homepage.css">
+</head>
+
+<body style="background-color: #191919;">
+
+  <!-- Logo -->
+<div style="position: fixed; top: 10px; left: 10px; z-index: 1000; display: flex; align-items: center; gap: 20px;">
+    <img src="Images/Akshat Creations.png" alt="Logo" class="site-logo">
+    <style>
+        .site-logo {
+            height: 50px;
+            width: 50px;
+        }
+        @media (max-width: 600px) {
+            .site-logo {
+                height: 40px !important;
+                width: 40px !important;
+            }
+        }
+    </style>
+</div>
+
+<!-- Navigation Menu -->
+<nav style="position: fixed; top: 20px; right: 10px; font-family: 'Kite One', sans-serif; width: auto; z-index: 1001; background: transparent;">
+    <div class="nav-container">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#visit" class="nav-link">Visit</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </div>
+</nav>
+<style>
+    .nav-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .nav-link {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 16px;
+        padding: 6px 8px;
+        transition: color 0.2s;
+        white-space: nowrap;
+    }
+    .nav-link.active,
+    .nav-link:focus,
+    .nav-link:active {
+        color: cyan !important;
+    }
+    @media (max-width: 600px) {
+        nav {
+            top: 8px !important;
+            right: 2vw !important;
+            left: auto !important;
+        }
+        .nav-container {
+            gap: 2px !important;
+        }
+        .nav-link {
+            font-size: 12px !important;
+            padding: 3px 4px !important;
+        }
+    }
+</style>
+<script>
+    // Scrollspy functionality
+    const sections = ['home', 'about', 'visit', 'projects', 'contact'];
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function onScroll() {
+        let scrollPos = window.scrollY || window.pageYOffset;
+        let found = false;
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(sections[i]);
+            if (section && section.offsetTop - 80 <= scrollPos) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.nav-link[href="#${sections[i]}"]`);
+                if (activeLink) activeLink.classList.add('active');
+                found = true;
+                break;
+            }
+        }
+        // If not found (top of page), highlight Home
+        if (!found) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector('.nav-link[href="#home"]').classList.add('active');
+        }
+    }
+
+    window.addEventListener('scroll', onScroll);
+
+    // Smooth scroll and highlight on click
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Initial highlight
+    onScroll();
+</script>
+
+  <!-- Hero Section -->
+<section id="home" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 150px; padding: 29px;">
+    <div style="flex: 1 1 300px; font-family: 'Koh Santepheap', sans-serif; font-size: 24px; text-align: center;">
+        <h1 class="hero-title" style="color: cyan; white-space: nowrap;">Hello, I am Akshat Gupta</h1>
+    </div>
+    <div class="hero-img-container" style="flex: 1 1 300px; display: flex; justify-content: flex-end; align-items: center; margin-top: 0;">
+        <img src="Images/Akshat WPAP art Photo.png" alt="Akshat Gupta" style="max-width: 90%; height: auto;">
+    </div>
+    <style>
+        @media (max-width: 600px) {
+            #home {
+                margin-top: 43px !important;
+                padding: 12px !important;
+                flex-direction: column !important;
+            }
+            .hero-title {
+                font-size: 22px !important;
+                margin-top: 20px !important;
+                white-space: nowrap !important;
+            }
+            #home > div:last-child {
+                justify-content: center !important;
+                margin-top: 25px !important;
+            }
+            .hero-img-container {
+                margin-top: -250px !important;
+            }
+        }
+    </style>
+</section>
+
+<!-- About Me Section -->
+<section id="about" style="margin-top: 100px; padding: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+    <div style="flex: 1 1 300px; max-width: 600px;">
+    <h2 style="font-size: 40px; color: cyan; margin-left: 0px;">About Me</h2>
+      <p style="color: white; font-size: 18px; font-family: 'Noto Music', sans-serif; text-align: justify;">
+        I'm a passionate UX/UI design student at Sushant University, Gurugram (2022-2026), with a love for graphic design, photo editing, and video editing. My creative journey began in 2016 with YouTube channels, exploring gaming content and honing editing skills. I've traveled to 23+ countries, drawing inspiration from diverse cultures and experiences. With strong interests in design and content creation, I strive to bring fresh, engaging experiences to everything I do.
+      </p>
+    </div>
+    <div style="flex: 1 1 300px; max-width: 500px; display: flex; justify-content: center; align-items: center; text-align: center;">
+    <img src="Images/About.png" alt="About Me Image" class="about-img" style="max-width: 100%; height: auto; border-radius: 10px;">
+    </div>
+    <style>
+    @media (max-width: 600px) {
+      #about {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      #about > div {
+        max-width: 100% !important;
+      }
+      #about img.about-img {
+        margin: -160px auto 0 auto !important;
+        display: block !important;
+      }
+      #about > div:first-child {
+        margin-top: -125px !important;
+      }
+    }
+    @media (min-width: 601px) {
+      #about img.about-img {
+        margin-top: 73px;
+      }
+    }
+    </style>
+</section>
+
+<!-- Skills Section -->
+<div id="skills-section" style="margin-left: 110px; font-family: 'Noto Music', sans-serif;">
+    <h2 style="font-size: 40px; color: cyan; font-family: 'Inknut Antiqua', serif;">Skills</h2>
+    <p style="color: white; font-size: 18px; text-align: justify;">
+    </p>
+</div>
+
+<p class="skills-desc" style="color: white; font-size: 18px; font-family: 'Noto Music', sans-serif; text-align: justify; margin-left: 110px; margin-right: 100px;">
+    I use Figma for UX/UI design, Adobe Photoshop for Graphics, Premiere Pro and After Effects for Videos, and mobile apps like CapCut and InShot for Shorts or Reels.
+</p>
+<style>
+@media (max-width: 600px) {
+    .skills-desc {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+}
+</style>
+<style>
+@media (max-width: 600px) {
+    #skills-section {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+        max-width: 100% !important;
+        margin-top: -145px !important; /* Reduced by 10px more from -135px */
+    }
+}
+</style>
+<img src="Images/Software logos.png" alt="Skills Image" class="skills-img" style="width: calc(70% - 500px); height: auto; max-width: 100%; max-height: calc(100% - 110px); margin: 1px; display: block; margin-left: auto; margin-right: auto;">
+<style>
+@media (max-width: 600px) {
+    .skills-img {
+        width: 90% !important;
+        max-width: 320px !important;
+        display: block !important;
+        margin: 20px auto 0 auto !important;
+        max-height: 180px !important;
+    }
+}
+</style>
+
+<!-- Visit Section -->
+<section id="visit" style="margin-top: 0px; padding: 0px;">
+    <h2 class="visit-title" style="font-size: 40px; color: cyan; margin-left: 110px;">Design Visit</h2>
+
+<div class="visit-location">
+    <h3 style="color: white; font-size: 24px; display: flex; align-items: center;"></h3>
+        <img src="Images/South Korea.png" alt="South Korea Flag" style="height: 30px; width: auto; margin-right: 10px;">
+        Seoul, South Korea
+    </h3>
+    <p style="color: white; font-size: 18px; font-family: 'Inter', sans-serif; text-align: justify;">
+         Dongdaemun Design Plaza (DDP) in Seoul is a global hub for design and innovation, designed by Zaha Hadid. It features futuristic architecture and hosts exhibitions, fashion shows, and design events that inspire forward-thinking creativity.
+    </p>
+    <img src="Images/SK DDP Photos.png" alt="DDP Seoul" style="max-width: 100%; height: auto; margin: 20px 0;">
+</div>
+
+<div class="visit-location" style="margin-top: 40px;">
+    <h3 style="color: white; font-size: 24px; display: flex; align-items: center;">
+        <img src="Images/Japan Flag.png" alt="Japan Flag" style="height: 30px; margin-right: 20px;">
+        Tokyo, Japan
+    </h3>
+    <p style="color: white; font-size: 18px; font-family: 'Inter', sans-serif; text-align: justify;">
+        TeamLab Planets Tokyo is an immersive digital art museum where visitors walk through water and interact with light and sound. It breaks boundaries between art and audience, creating unforgettable emotional experiences.
+    </p>
+    <img src="Images/Japan Teamlabs photo.png" alt="TeamLab Planets Tokyo" style="max-width: 100%; margin: 20px 0;">
+</div>
+<style>
+@media (max-width: 600px) {
+    .visit-location {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+}
+</style>
+
+<style>
+.visit-location {
+    margin-left: 110px;
+    margin-right: 110px;
+}
+@media (max-width: 600px) {
+    .visit-location {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+}
+</style>
+    <style>
+        @media (max-width: 600px) {
+            #visit .visit-title {
+                margin-left: 20px !important;
+                text-align: left !important;
+            }
+        }
+    </style>
+</section>
+
+<!-- Projects Placeholder -->
+<section id="projects" style="text-align: center;">
+    <h2 style="color: cyan; font-size: 36px;">Projects</h2>
+    <p style="color: white; font-size: 18px;">Projects will be updated soon... </p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" style="padding: 10px; margin-left: 110px; margin-right: 110px;">
+    <h2 class="contact-title" style="color: cyan; font-size: 36px;">Contact</h2>
+    <style>
+    @media (max-width: 600px) {
+        .contact-title {
+            text-align: center !important;
+        }
+        #contact {
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+        }
+    }
+    @media (min-width: 601px) {
+        #contact {
+            margin-left: 60px !important;
+            margin-right: 60px !important;
+        }
+    }
+    </style>
+    <p style="color: white; font-size: 18px;">Email: <a href="mailto:agupt126@yahoo.com" style="color: white;">agupt126@yahoo.com</a></p>
+    <p style="color: white; font-size: 18px;">Whatsapp: +44 7452 327182</p>
+    <h3 style="color: cyan; font-size: 30px; font-family: 'Inknut Antiqua', serif; text-align: center;">Socials</h3>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="https://www.instagram.com/akshuuuxd_/" target="_blank"><img src="Images/instagram.png" alt="Instagram Logo" style="height: 30px;"></a>
+        <a href="https://www.linkedin.com/in/akshat-gupta-07210a307" target="_blank"><img src="Images/linkedin.png" alt="LinkedIn Logo" style="height: 30px;"></a>
+        <a href="https://www.facebook.com/share/18pPMP2Efo/" target="_blank"><img src="Images/facebook.png" alt="Facebook Logo" style="height: 30px;"></a>
+    </div>
+</section>
+</html>
